@@ -16,7 +16,7 @@ setuptools.setup(
     install_requires=['aiohttp>=2.0'],
 
     classifiers=[
-        'Development Status :: 3 - Beta',
+        'Development Status :: 4 - Beta',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
