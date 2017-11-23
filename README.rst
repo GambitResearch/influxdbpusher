@@ -20,19 +20,21 @@ Example:
 .. code-block:: python
 
 	import asyncio
+	import logging
 	from influxdbpusher import InfluxDbPusher
+
 
 	async def test():
 	    logging.basicConfig(level=logging.DEBUG)
 	    influx = InfluxDbPusher("http://influxdb:8086", "playground")
 	    while True:
 	        for dummy in range(10):
-	            await sleep(0.02)
+	            await asyncio.sleep(0.02)
 	            influx("test", dummy, {"foo": "bar"})
 	            influx("measurement1",
 	                   {"fieldname1": 'hello "world"', "value": 2.0},
 	                   {"foo": "bar"})
-	        await sleep(5)
+	        await asyncio.sleep(5)
 	    await influx.close()
 
 
