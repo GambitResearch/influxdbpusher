@@ -193,7 +193,7 @@ class InfluxDbPusher(InfluxDbPusherBase):
         self.logger.debug("Shutting down influxdb pusher %r", self)
         await self._queue.put('quit')
         await self._push_task
-        self._http_session.close()
+        await self._http_session.close()
 
 
 async def test():
