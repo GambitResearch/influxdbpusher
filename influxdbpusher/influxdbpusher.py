@@ -150,6 +150,8 @@ class InfluxDbPusher(InfluxDbPusherBase):
                 quit = await self._transmit_samples()
                 if quit:
                     return
+            except asyncio.CancelledError:
+                raise
             except Exception:
                 self.logger.exception("Error in push task")
 
