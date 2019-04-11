@@ -149,6 +149,7 @@ class InfluxDbPusher(InfluxDbPusherBase):
                             pass
                 quit = await self._transmit_samples()
                 if quit:
+                    self.logger.debug("_push_data_loop: quit")
                     return
             except asyncio.CancelledError:
                 raise
@@ -194,8 +195,12 @@ class InfluxDbPusher(InfluxDbPusherBase):
         """
         self.logger.debug("Shutting down influxdb pusher %r", self)
         await self._queue.put('quit')
-        await self._push_task
+        try:
+            await self._push_task
+        except asyncio.CancelledError:
+            pass
         await self._http_session.close()
+        self.logger.debug("Shutting down influxdb pusher: finished")
 
 
 async def test():

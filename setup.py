@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="influxdbpusher",
-    version="0.1.2",
+    version="0.1.3",
     url="https://github.com/GambitResearch/influxdbpusher",
 
     author="Gustavo Carneiro",
